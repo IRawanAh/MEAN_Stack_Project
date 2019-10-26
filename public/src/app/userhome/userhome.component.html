@@ -1,0 +1,41 @@
+<div class="left">
+  <a mat-raised-button [routerLink]="['/user']"><button mat-raised-button color="accent">Create Form</button></a>
+</div>
+<div class="card-container">
+    <div *ngFor="let form of forms" >
+
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{form.name}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="../../assets/img/formhead.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        {{form.description}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button class="green"  [routerLink]="['/view',form._id]">View Form</button> <span class="spacer"></span>
+      <button mat-raised-button color="accent" [routerLink]="['/viewall',form._id]" >Responses</button>
+      <button mat-raised-button color="warn"  (click)="delete(form._id)">Delete</button>
+
+
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+</div>
+<!-- Footer -->
+<!-- <footer>
+    Love Angular?&nbsp;
+    <a href="https://github.com/angular/angular" target="_blank" rel="noopener"> Give our repo a star.
+      <div class="github-star-badge">
+          <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        Star
+      </div>
+    </a>
+    <a href="https://github.com/angular/angular" target="_blank" rel="noopener">
+      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="#1976d2"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+    </a>
+</footer> -->

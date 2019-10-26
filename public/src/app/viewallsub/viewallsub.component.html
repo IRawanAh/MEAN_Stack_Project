@@ -1,0 +1,135 @@
+<div class="text-center">
+  <h2> You have  {{count}} Submissions</h2>
+</div>
+
+
+<mat-tab-group>
+  <mat-tab label="Responses">
+    <ng-template matTabContent>
+
+      <div class="list">
+        <ul>
+          <div *ngFor="let item of ans | paginate: { itemsPerPage: 1, currentPage: p } ">
+            <div class="row" style=" display: inline-block; width: 100%; padding:20px; background-color:#eff0f2;border-radius:15px;
+                          -webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+                          -moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+                          box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);">
+
+              <ul class="element">
+                <!-- <li *ngFor="let x of a; let j = index">
+                  {{j}}<b>{{x}}</b>
+                </li> -->
+                <div *ngFor="let a of item; let i = index" >
+                <h4>  {{a[0]}}</h4>
+                  <ul>
+                    <li>
+                      {{a[1]}}
+                    </li>
+                  </ul>
+                </div>
+
+              </ul>
+              <!-- <div *ngFor="let answer of item | keyvalue">
+          
+                    <div *ngFor="let a of answer | keyvalue">
+                      Key: <b>{{a}}</b> and Value: <b>{{a}}</b>
+                    </div>
+          
+                  </div> -->
+
+
+            </div>
+          </div>
+        </ul>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Summary">
+    <ng-template matTabContent>
+
+      <div class="list">
+        <ul>
+          <div class="row" style=" display: inline-block; width: 100%; padding:20px; background-color:#eff0f2;border-radius:15px;
+                          -webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+                          -moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+                          box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);">
+
+            <!-- <ul class="element">
+              <li *ngFor="let x of qs; let j = index">
+                <b>{{x.label}}</b>
+                <div class="bar-chart">
+                  <ul class="plot-container">
+                    <li data-cp-size="100">100%</li>
+                    <li data-cp-size="30">30%</li>
+                    <li data-cp-size="20">20%</li>
+                    <li data-cp-size="70">70%</li>
+                    <li data-cp-size="90">90%</li>
+                  </ul>
+                </div>
+              </li>
+            </ul> -->
+            <ul class="element">
+              <li *ngFor="let dic of result; let j = index">
+
+                <div *ngIf="dic['type']=='radio' || dic['type']=='autocomplete' ;else other_content">
+
+
+                  <!-- <div *ngFor="let a of dic | keyvalue">
+                  <b>{{a.value}}</b>
+                  </div> -->
+                  <h3>{{dic['qss']}}</h3>
+
+                  <div class="bar-chart">
+                    <ul >
+                      <div *ngFor="let num of dic['values'] | keyvalue">
+                        <!-- {{num.key}}<li [attr.data-cp-size]="num.value">{{num.value}}</li> -->
+
+                        <p>{{num.key}}</p>
+                        <div class="contain">
+                          <div class="skills" [ngStyle]="setMyStyles(num.value,dic )">{{ percernt(num.value,dic)}}%</div>
+                        </div>
+                        
+                      </div>
+                    </ul>
+                  </div>
+                </div>
+                <ng-template #other_content>
+                  <h3>{{dic['qss']}}</h3>
+
+                  <!-- <div class="bar-chart">
+                    <ul class="plot-container">
+                      <li data-cp-size="100">100%</li>
+                      <li data-cp-size="30">30%</li>
+                      <li data-cp-size="20">20%</li>
+                      <li data-cp-size="70">70%</li>
+                      <li data-cp-size="90">90%</li>
+                    </ul>
+                  </div> -->
+                  <div class="textareashow">
+                    <div *ngFor="let text of dic['text'] | keyvalue">
+                      <h6>{{text.value}}</h6>
+                    </div>
+                  </div>
+                </ng-template>
+
+
+              </li>
+            </ul>
+
+
+          </div>
+        </ul>
+      </div>
+
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
+
+
+
+
+<div class="left">
+  <button mat-raised-button color="accent" [routerLink]="['/home']">Back</button>
+</div>
