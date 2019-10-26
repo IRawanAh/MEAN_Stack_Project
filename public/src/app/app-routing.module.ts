@@ -7,6 +7,7 @@ import { ViewFormComponent } from './view-form/view-form.component';
 import { UserhomeComponent } from './userhome/userhome.component';
 import { SubmitFormComponent } from './submit-form/submit-form.component';
 import { ViewallsubComponent } from './viewallsub/viewallsub.component';
+import { GuestPageComponent } from './guest-page/guest-page.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,8 @@ const routes: Routes = [
   {path:'view/:id', component: ViewFormComponent},
   {path:'form/:id', component: SubmitFormComponent},
   {path:'viewall/:id', component: ViewallsubComponent},
+  {path:'guest', component:GuestPageComponent },
+
 
 ];
 @NgModule({

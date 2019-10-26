@@ -12,7 +12,7 @@ import { mixinColor, MatCommonModule } from '@angular/material/core';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 // Boilerplate for applying mixins to MatToolbar.
 /**
@@ -57,10 +57,7 @@ class MatToolbar extends _MatToolbarMixinBase {
             return;
         }
         this._checkToolbarMixedModes();
-        this._toolbarRows.changes.subscribe((/**
-         * @return {?}
-         */
-        () => this._checkToolbarMixedModes()));
+        this._toolbarRows.changes.subscribe(() => this._checkToolbarMixedModes());
     }
     /**
      * Throws an exception when developers are attempting to combine the different toolbar row modes.
@@ -75,21 +72,9 @@ class MatToolbar extends _MatToolbarMixinBase {
         // a <mat-toolbar-row> element.
         /** @type {?} */
         const isCombinedUsage = Array.from(this._elementRef.nativeElement.childNodes)
-            .filter((/**
-         * @param {?} node
-         * @return {?}
-         */
-        node => !(node.classList && node.classList.contains('mat-toolbar-row'))))
-            .filter((/**
-         * @param {?} node
-         * @return {?}
-         */
-        node => node.nodeType !== (this._document ? this._document.COMMENT_NODE : 8)))
-            .some((/**
-         * @param {?} node
-         * @return {?}
-         */
-        node => !!(node.textContent && node.textContent.trim())));
+            .filter(node => !(node.classList && node.classList.contains('mat-toolbar-row')))
+            .filter(node => node.nodeType !== (this._document ? this._document.COMMENT_NODE : 8))
+            .some(node => !!(node.textContent && node.textContent.trim()));
         if (isCombinedUsage) {
             throwToolbarMixedModesError();
         }
@@ -132,7 +117,7 @@ function throwToolbarMixedModesError() {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class MatToolbarModule {
 }
@@ -146,13 +131,13 @@ MatToolbarModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { MatToolbarModule, throwToolbarMixedModesError, MatToolbarRow, MatToolbar };
+export { MatToolbarModule, throwToolbarMixedModesError, MatToolbarBase, _MatToolbarMixinBase, MatToolbarRow, MatToolbar };
 //# sourceMappingURL=toolbar.js.map

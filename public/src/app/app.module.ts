@@ -30,6 +30,8 @@ import { SubmitFormComponent } from './submit-form/submit-form.component';
 import { ViewallsubComponent } from './viewallsub/viewallsub.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
+import { GuestPageComponent } from './guest-page/guest-page.component';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { AppRoutingModule } from './app-routing.module';
     UserhomeComponent,
     SubmitFormComponent,
     ViewallsubComponent,
+    GuestPageComponent,
+    NavComponent,
     
     
     

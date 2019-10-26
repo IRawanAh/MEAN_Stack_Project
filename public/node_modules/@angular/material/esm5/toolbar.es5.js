@@ -13,13 +13,13 @@ import { mixinColor, MatCommonModule } from '@angular/material/core';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 // Boilerplate for applying mixins to MatToolbar.
 /**
  * \@docs-private
  */
-var 
+var  
 // Boilerplate for applying mixins to MatToolbar.
 /**
  * \@docs-private
@@ -65,10 +65,7 @@ var MatToolbar = /** @class */ (function (_super) {
             return;
         }
         this._checkToolbarMixedModes();
-        this._toolbarRows.changes.subscribe((/**
-         * @return {?}
-         */
-        function () { return _this._checkToolbarMixedModes(); }));
+        this._toolbarRows.changes.subscribe(function () { return _this._checkToolbarMixedModes(); });
     };
     /**
      * Throws an exception when developers are attempting to combine the different toolbar row modes.
@@ -92,21 +89,9 @@ var MatToolbar = /** @class */ (function (_super) {
         // a <mat-toolbar-row> element.
         /** @type {?} */
         var isCombinedUsage = Array.from(this._elementRef.nativeElement.childNodes)
-            .filter((/**
-         * @param {?} node
-         * @return {?}
-         */
-        function (node) { return !(node.classList && node.classList.contains('mat-toolbar-row')); }))
-            .filter((/**
-         * @param {?} node
-         * @return {?}
-         */
-        function (node) { return node.nodeType !== (_this._document ? _this._document.COMMENT_NODE : 8); }))
-            .some((/**
-         * @param {?} node
-         * @return {?}
-         */
-        function (node) { return !!(node.textContent && node.textContent.trim()); }));
+            .filter(function (node) { return !(node.classList && node.classList.contains('mat-toolbar-row')); })
+            .filter(function (node) { return node.nodeType !== (_this._document ? _this._document.COMMENT_NODE : 8); })
+            .some(function (node) { return !!(node.textContent && node.textContent.trim()); });
         if (isCombinedUsage) {
             throwToolbarMixedModesError();
         }
@@ -150,7 +135,7 @@ function throwToolbarMixedModesError() {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var MatToolbarModule = /** @class */ (function () {
     function MatToolbarModule() {
@@ -167,13 +152,13 @@ var MatToolbarModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { MatToolbarModule, throwToolbarMixedModesError, MatToolbarRow, MatToolbar };
+export { MatToolbarModule, throwToolbarMixedModesError, MatToolbarBase, _MatToolbarMixinBase, MatToolbarRow, MatToolbar };
 //# sourceMappingURL=toolbar.es5.js.map

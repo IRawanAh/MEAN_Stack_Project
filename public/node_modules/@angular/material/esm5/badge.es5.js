@@ -8,13 +8,13 @@
 import { __extends } from 'tslib';
 import { AriaDescriber, A11yModule } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { Directive, ElementRef, Inject, Input, NgZone, Optional, Renderer2, isDevMode, NgModule } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Directive, ElementRef, Inject, Input, NgZone, Optional, Renderer2, NgModule } from '@angular/core';
 import { mixinDisabled, MatCommonModule } from '@angular/material/core';
-import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var nextId = 0;
@@ -22,7 +22,7 @@ var nextId = 0;
 /**
  * \@docs-private
  */
-var 
+var  
 // Boilerplate for applying mixins to MatBadge.
 /**
  * \@docs-private
@@ -39,13 +39,13 @@ var _MatBadgeMixinBase = mixinDisabled(MatBadgeBase);
  */
 var MatBadge = /** @class */ (function (_super) {
     __extends(MatBadge, _super);
-    function MatBadge(_ngZone, _elementRef, _ariaDescriber, _renderer, _animationMode) {
+    function MatBadge(_document, _ngZone, _elementRef, _ariaDescriber, _renderer) {
         var _this = _super.call(this) || this;
+        _this._document = _document;
         _this._ngZone = _ngZone;
         _this._elementRef = _elementRef;
         _this._ariaDescriber = _ariaDescriber;
         _this._renderer = _renderer;
-        _this._animationMode = _animationMode;
         /**
          * Whether the badge has any content.
          */
@@ -65,13 +65,6 @@ var MatBadge = /** @class */ (function (_super) {
          * Unique id for the badge
          */
         _this._id = nextId++;
-        if (isDevMode()) {
-            /** @type {?} */
-            var nativeElement = _elementRef.nativeElement;
-            if (nativeElement.nodeType !== nativeElement.ELEMENT_NODE) {
-                throw Error('matBadge must be attached to an element node.');
-            }
-        }
         return _this;
     }
     Object.defineProperty(MatBadge.prototype, "color", {
@@ -105,6 +98,25 @@ var MatBadge = /** @class */ (function (_super) {
          */
         function (val) {
             this._overlap = coerceBooleanProperty(val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MatBadge.prototype, "content", {
+        /** The content for the badge */
+        get: /**
+         * The content for the badge
+         * @return {?}
+         */
+        function () { return this._content; },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._content = value;
+            this._hasContent = value != null && ("" + value).trim().length > 0;
+            this._updateTextContent();
         },
         enumerable: true,
         configurable: true
@@ -177,24 +189,6 @@ var MatBadge = /** @class */ (function (_super) {
         return this.position.indexOf('before') === -1;
     };
     /**
-     * @param {?} changes
-     * @return {?}
-     */
-    MatBadge.prototype.ngOnChanges = /**
-     * @param {?} changes
-     * @return {?}
-     */
-    function (changes) {
-        /** @type {?} */
-        var contentChange = changes['content'];
-        if (contentChange) {
-            /** @type {?} */
-            var value = contentChange.currentValue;
-            this._hasContent = value != null && ("" + value).trim().length > 0;
-            this._updateTextContent();
-        }
-    };
-    /**
      * @return {?}
      */
     MatBadge.prototype.ngOnDestroy = /**
@@ -209,27 +203,11 @@ var MatBadge = /** @class */ (function (_super) {
             }
             // When creating a badge through the Renderer, Angular will keep it in an index.
             // We have to destroy it ourselves, otherwise it'll be retained in memory.
-            if (this._renderer.destroyNode) {
+            // @breaking-change 8.0.0 remove _renderer from null.
+            if (this._renderer && this._renderer.destroyNode) {
                 this._renderer.destroyNode(badgeElement);
             }
         }
-    };
-    /**
-     * Gets the element into which the badge's content is being rendered.
-     * Undefined if the element hasn't been created (e.g. if the badge doesn't have content).
-     */
-    /**
-     * Gets the element into which the badge's content is being rendered.
-     * Undefined if the element hasn't been created (e.g. if the badge doesn't have content).
-     * @return {?}
-     */
-    MatBadge.prototype.getBadgeElement = /**
-     * Gets the element into which the badge's content is being rendered.
-     * Undefined if the element hasn't been created (e.g. if the badge doesn't have content).
-     * @return {?}
-     */
-    function () {
-        return this._badgeElement;
     };
     /** Injects a span element into the DOM with the content. */
     /**
@@ -263,8 +241,11 @@ var MatBadge = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
+        // @breaking-change 8.0.0 Remove null check for _renderer
         /** @type {?} */
-        var badgeElement = this._renderer.createElement('span');
+        var rootNode = this._renderer || this._document;
+        /** @type {?} */
+        var badgeElement = rootNode.createElement('span');
         /** @type {?} */
         var activeClass = 'mat-badge-active';
         /** @type {?} */
@@ -274,26 +255,17 @@ var MatBadge = /** @class */ (function (_super) {
         badgeElement.setAttribute('id', "mat-badge-content-" + this._id);
         badgeElement.classList.add(contentClass);
         badgeElement.textContent = this.content;
-        if (this._animationMode === 'NoopAnimations') {
-            badgeElement.classList.add('_mat-animation-noopable');
-        }
         if (this.description) {
             badgeElement.setAttribute('aria-label', this.description);
         }
         this._elementRef.nativeElement.appendChild(badgeElement);
         // animate in after insertion
-        if (typeof requestAnimationFrame === 'function' && this._animationMode !== 'NoopAnimations') {
-            this._ngZone.runOutsideAngular((/**
-             * @return {?}
-             */
-            function () {
-                requestAnimationFrame((/**
-                 * @return {?}
-                 */
-                function () {
+        if (typeof requestAnimationFrame === 'function') {
+            this._ngZone.runOutsideAngular(function () {
+                requestAnimationFrame(function () {
                     badgeElement.classList.add(activeClass);
-                }));
-            }));
+                });
+            });
         }
         else {
             badgeElement.classList.add(activeClass);
@@ -397,11 +369,11 @@ var MatBadge = /** @class */ (function (_super) {
     ];
     /** @nocollapse */
     MatBadge.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [DOCUMENT,] }] },
         { type: NgZone },
         { type: ElementRef },
         { type: AriaDescriber },
-        { type: Renderer2 },
-        { type: String, decorators: [{ type: Optional }, { type: Inject, args: [ANIMATION_MODULE_TYPE,] }] }
+        { type: Renderer2 }
     ]; };
     MatBadge.propDecorators = {
         color: [{ type: Input, args: ['matBadgeColor',] }],
@@ -417,7 +389,7 @@ var MatBadge = /** @class */ (function (_super) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var MatBadgeModule = /** @class */ (function () {
     function MatBadgeModule() {
@@ -437,13 +409,13 @@ var MatBadgeModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { MatBadgeModule, MatBadge };
+export { MatBadgeModule, MatBadgeBase, _MatBadgeMixinBase, MatBadge };
 //# sourceMappingURL=badge.es5.js.map

@@ -6,21 +6,22 @@
  * found in the LICENSE file at https://angular.io/license
  */
 import { AriaDescriber } from '@angular/cdk/a11y';
-import { ElementRef, NgZone, OnChanges, OnDestroy, Renderer2, SimpleChanges } from '@angular/core';
-import { CanDisable, CanDisableCtor, ThemePalette } from '@angular/material/core';
+import { ElementRef, NgZone, OnDestroy, Renderer2 } from '@angular/core';
+import { ThemePalette, CanDisableCtor, CanDisable } from '@angular/material/core';
 /** @docs-private */
-declare class MatBadgeBase {
+export declare class MatBadgeBase {
 }
-declare const _MatBadgeMixinBase: CanDisableCtor & typeof MatBadgeBase;
+export declare const _MatBadgeMixinBase: CanDisableCtor & typeof MatBadgeBase;
 export declare type MatBadgePosition = 'above after' | 'above before' | 'below before' | 'below after';
 export declare type MatBadgeSize = 'small' | 'medium' | 'large';
 /** Directive to display a text badge. */
-export declare class MatBadge extends _MatBadgeMixinBase implements OnDestroy, OnChanges, CanDisable {
+export declare class MatBadge extends _MatBadgeMixinBase implements OnDestroy, CanDisable {
+    private _document;
     private _ngZone;
     private _elementRef;
     private _ariaDescriber;
-    private _renderer;
-    private _animationMode?;
+    /** @breaking-change 8.0.0 Make _renderer a required param and remove _document. */
+    private _renderer?;
     /** Whether the badge has any content. */
     _hasContent: boolean;
     /** The color of the badge. Can be `primary`, `accent`, or `warn`. */
@@ -36,6 +37,7 @@ export declare class MatBadge extends _MatBadgeMixinBase implements OnDestroy, O
     position: MatBadgePosition;
     /** The content for the badge */
     content: string;
+    private _content;
     /** Message used to describe the decorated element via aria-describedby */
     description: string;
     private _description;
@@ -47,18 +49,14 @@ export declare class MatBadge extends _MatBadgeMixinBase implements OnDestroy, O
     /** Unique id for the badge */
     _id: number;
     private _badgeElement;
-    constructor(_ngZone: NgZone, _elementRef: ElementRef<HTMLElement>, _ariaDescriber: AriaDescriber, _renderer: Renderer2, _animationMode?: string | undefined);
+    constructor(_document: any, _ngZone: NgZone, _elementRef: ElementRef<HTMLElement>, _ariaDescriber: AriaDescriber, 
+    /** @breaking-change 8.0.0 Make _renderer a required param and remove _document. */
+    _renderer?: Renderer2 | undefined);
     /** Whether the badge is above the host or not */
     isAbove(): boolean;
     /** Whether the badge is after the host or not */
     isAfter(): boolean;
-    ngOnChanges(changes: SimpleChanges): void;
     ngOnDestroy(): void;
-    /**
-     * Gets the element into which the badge's content is being rendered.
-     * Undefined if the element hasn't been created (e.g. if the badge doesn't have content).
-     */
-    getBadgeElement(): HTMLElement | undefined;
     /** Injects a span element into the DOM with the content. */
     private _updateTextContent;
     /** Creates the badge element */
@@ -70,4 +68,3 @@ export declare class MatBadge extends _MatBadgeMixinBase implements OnDestroy, O
     /** Clears any existing badges that might be left over from server-side rendering. */
     private _clearExistingBadges;
 }
-export {};

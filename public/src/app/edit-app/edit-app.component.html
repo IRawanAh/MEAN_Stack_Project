@@ -1,42 +1,48 @@
+<mat-toolbar class="app-toolbar" color="primary">
+  <span>Forms Builder</span>
+
+  <span class="spacer"></span>
+  <button mat-button [matMenuTriggerFor]="belowMenu">Username<mat-icon class="example-icon" aria-hidden="false"
+          aria-label="Example user person_pin icon">person_pin</mat-icon></button>
+  <mat-menu #belowMenu="matMenu" yPosition="below">
+      <!-- <button mat-menu-item routerLink="/sttings">Account<mat-icon class="example-icon" aria-hidden="false"
+              aria-label="Example user settings_applications icon">settings_applications</mat-icon></button> -->
+      <button mat-menu-item routerLink="/login">Logout<mat-icon class="example-icon" aria-hidden="false"
+              aria-label="Example user exit_to_app icon">exit_to_app</mat-icon></button>
+  </mat-menu>
+</mat-toolbar>
+<mat-toolbar>
+    <a href=""[routerLink]="['/home']"><h6>
+      <mat-icon class="example-icon" aria-hidden="false"aria-label="Example user home icon">home</mat-icon>
+          Dashboard</h6></a>
+  </mat-toolbar>
+
 <div *ngIf="model && !report" class="padding20 white-bg">
-  <a [routerLink]="['/home']"> Home</a>
-  <div class="row">
-    <div class="col-12">
-      <div class="btn-cont">
-        <button (click)="initReport()" class="btn btn-primary pull-left">Response</button>
-        <button (click)="updateForm()"  class="btn btn-primary pull-right">Save</button>
-        <button  mat-raised-button color="warn" class="btn btn-primary pull-right"
-          style="margin-right:3px;" [routerLink]="['/home']">Cancel </button>
-      </div>
-    </div>
-  </div>
-  <div class="spacer30"></div>
-  <div class="row">
-    <div class="col-4">
+  <p style="color: #D81B60; font-weight: 500;margin-left: 30px;margin-top: 20px;
 
-      <div class="row">
-        <label class="col-8">Background Color</label>
-        <input class="colorpick col-4" type="color" name="bgColor" [(ngModel)]="model.theme.bgColor">
-      </div>
-      <div class="row">
-        <label class="col-8">Text Color</label>
-        <input class="colorpick col-4" type="color" name="textColor" [(ngModel)]="model.theme.textColor">
-      </div>
+  ">*Customize your form by drag and drop below fields to the form area.</p>
 
-      <h4 (click)="test()">Select Fields</h4>
-      <p>Customize your form by drag and drop below fields to the form area.</p>
+  <div class="row" >
+    <div class=" scroll">
+        <div class="row">
+            <div class="col-8" >
+            <label >Background Color <span class="spacer"></span></label>
+            <input class="colorpick" type="color" name="bgColor" [(ngModel)]="model.theme.bgColor">
+            <label>Text Color  <span class="spacer"></span></label>
+            <input class="colorpick" type="color" name="textColor" [(ngModel)]="model.theme.textColor">
+          </div>
+        </div>
       <!--a draggable element-->
-      <div class="fields" *ngFor="let item of fieldModels">
+      <div class="fields" *ngFor="let item of fieldModels" >
         <div class="field pointer shadow-bg" [dndDraggable]="item" [dndEffectAllowed]="'copy'"
           (dndEnd)="onDragEnd($event)">
           <i [ngClass]="item.icon" class="fa pull-left"></i>
           <h5>{{item.label}}</h5>
         </div>
       </div>
-
     </div>
-    <div class="col-8">
-
+    <!-- el view form drag -->
+    <div class="col-8" >
       <div class="form-group" style="margin-bottom: 0px !important; padding: 30px 60px 5px 60px;"
         [style.backgroundColor]="model.theme.bgColor" [style.color]="model.theme.textColor">
         <h2><input class="form-control" type="text" [(ngModel)]="model.name" /></h2>
@@ -88,12 +94,12 @@
                 <textarea class="form-control" id="{{item.name}}" placeholder="{{item.placeholder}}">
                       </textarea>
               </div>
-              <div *ngIf="item.type=='file'">
+              <!-- <div *ngIf="item.type=='file'">
                 <label>{{item.label}} (File can't be uploaded right now)</label> <label *ngIf="item.required"
                   class="text-danger">*</label>
                 <input type="file" class="form-control" id="{{item.name}}" placeholder="{{item.placeholder}}">
                 <small class="form-text text-danger">(File can't be uploaded right now)</small>
-              </div>
+              </div> -->
               <div *ngIf="item.type=='paragraph'">
                 <p class="form-text">{{item.placeholder}}</p>
               </div>
@@ -231,10 +237,6 @@
                 </div>
               </div>
             </div>
-
-
-
-
           </div>
         </div>
         <!--optional placeholder element for dropzone-->
@@ -244,41 +246,14 @@
       </section>
 
     </div>
-  </div>
-</div>
-
-
-
-<div *ngIf="report" class="padding20 white-bg">
-  <div class="row">
-    <div class="col-12 btn-cont">
-      <button (click)="report=false" class="btn btn-primary">
-        << Back</button> </div> <div class="col-12 spacer30">
-    </div>
-    <!-- if records found -->
-    <div *ngIf="reports?.length > 0" class="col-12">
-      <div *ngFor="let records of reports" class="report-block">
-        <div *ngFor="let record of records.attributes">
-          <div *ngIf="record.type !='button' && record.type !='paragraph'" class="row">
-            <div class="col-4">{{record.label}}</div>
-            <div class="col-8">{{record.value}}</div>
-          </div>
-        </div>
+    <!-- el view form drag -->
+    <div class="row btns">
+            <button mat-raised-button (click)="initReport()" color="primary" class="btn pull-left">Preview</button>
+            <button mat-raised-button (click)="updateForm()"class="btn  green pull-left">Save</button>
+            <button  mat-raised-button color="warn" class="btn pull-left" [routerLink]="['/home']">Cancel </button>
       </div>
-      <!-- <pre>{{reports|json}}</pre> -->
-    </div>
-    <!-- if no records found -->
-    <div *ngIf="reports?.length == 0" class="col-12 btn-cont">
-      No response found
-    </div>
-
   </div>
-
 </div>
-
-<!-- <pre *ngIf="model">{{model|json}}</pre> -->
-
-
 <div *ngIf="model" class="container marginT60  marginB30" style="max-width:500px;">
 
   <div class="row" style="padding:30px;" [style.backgroundColor]="model.theme.bgColor"
@@ -335,13 +310,13 @@
               [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}" autocomplete="off">
           </textarea>
           </div>
-          <div *ngIf="item.type=='file'">
+          <!-- <div *ngIf="item.type=='file'">
             <label>{{item.label}} (File can't be uploaded right now)</label> <label *ngIf="item.required"
               class="text-danger">*</label>
             <input type="file" class="form-control" id="{{item.name}}" placeholder="{{item.placeholder}}"
               [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}" autocomplete="off">
             <small class="form-text text-danger">(File can't be uploaded right now)</small>
-          </div>
+          </div> -->
           <div *ngIf="item.type=='paragraph'">
             <p class="form-text">{{item.placeholder}}</p>
           </div>
@@ -351,7 +326,6 @@
               [ngModelOptions]="{standalone: true}">
               <option *ngFor="let v of item.values" [value]="v.value">{{v.label}}</option>
             </select>
-            <!-- <small class="form-text text-muted">{{item.description}}</small> -->
           </div>
           <div *ngIf="item.type=='checkbox'">
             <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
@@ -377,14 +351,33 @@
               id="{{item.name}}">
           </div>
         </div>
-
-        <p (click)="show=1" class="marginT60 pointer">Show developer data</p>
-
       </div>
     </form>
   </div>
 </div>
 
-<pre *ngIf="show==1 && model">
-    {{model|json}}
-</pre>
+
+<!-- view Form -->
+<div *ngIf="report" class="padding20 white-bg">
+    <div class="row">
+      <div class="col-12 btnback">
+        <button mat-raised-button (click)="report=false" color="warn"class="btn pull-left"><mat-icon class="example-icon" aria-hidden="false"
+          aria-label="Example user arrow_back icon">arrow_back</mat-icon>Back</button> 
+      </div> 
+      <!-- if records found -->
+      <div *ngIf="reports?.length > 0" class="col-12">
+        <div *ngFor="let records of reports" class="report-block">
+          <div *ngFor="let record of records.attributes">
+            <div *ngIf="record.type !='button' && record.type !='paragraph'" class="row">
+              <div class="col-4">{{record.label}}</div>
+              <div class="col-8">{{record.value}}</div>
+            </div>
+          </div>
+        </div>
+      </div>  
+    </div>
+  
+  </div>
+  <!-- view Form -->
+
+  

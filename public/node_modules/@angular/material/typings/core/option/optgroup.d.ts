@@ -7,9 +7,9 @@
  */
 import { CanDisable, CanDisableCtor } from '../common-behaviors/disabled';
 /** @docs-private */
-declare class MatOptgroupBase {
+export declare class MatOptgroupBase {
 }
-declare const _MatOptgroupMixinBase: CanDisableCtor & typeof MatOptgroupBase;
+export declare const _MatOptgroupMixinBase: CanDisableCtor & typeof MatOptgroupBase;
 /**
  * Component that is used to group instances of `mat-option`.
  */
@@ -19,4 +19,3 @@ export declare class MatOptgroup extends _MatOptgroupMixinBase implements CanDis
     /** Unique id for the underlying label. */
     _labelId: string;
 }
-export {};

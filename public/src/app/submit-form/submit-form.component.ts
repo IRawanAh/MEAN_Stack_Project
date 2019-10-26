@@ -41,6 +41,7 @@ export class SubmitFormComponent implements OnInit {
       // this.newSubmission = { title: "" }
     })
     console.log(this.newSubmission)
+    this._router.navigate(['guest'])
   }
 
 }

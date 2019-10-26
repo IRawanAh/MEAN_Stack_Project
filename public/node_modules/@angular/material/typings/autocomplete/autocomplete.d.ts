@@ -21,9 +21,9 @@ export declare class MatAutocompleteSelectedEvent {
     option: MatOption);
 }
 /** @docs-private */
-declare class MatAutocompleteBase {
+export declare class MatAutocompleteBase {
 }
-declare const _MatAutocompleteMixinBase: CanDisableRippleCtor & typeof MatAutocompleteBase;
+export declare const _MatAutocompleteMixinBase: CanDisableRippleCtor & typeof MatAutocompleteBase;
 /** Default `mat-autocomplete` options that can be overridden. */
 export interface MatAutocompleteDefaultOptions {
     /** Whether the first option should be highlighted when an autocomplete panel is opened. */
@@ -93,7 +93,4 @@ export declare class MatAutocomplete extends _MatAutocompleteMixinBase implement
     _setVisibility(): void;
     /** Emits the `select` event. */
     _emitSelectEvent(option: MatOption): void;
-    /** Sets the autocomplete visibility classes on a classlist based on the panel is visible. */
-    private _setVisibilityClasses;
 }
-export {};

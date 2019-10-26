@@ -34,13 +34,13 @@ export class ViewallsubComponent implements OnInit {
     console.log("ddddddiiiiiiiiiiiccccc", obj2, obj2.values)
     var sum = this.sum(obj2.values)
     var percernt=this.percernt(num,obj2)
-    var color = 'red'
+    var color = "#f44336"
     console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbb",num / sum)
     if (percernt>= 25) {
-      color = "blue"
+      color = "#3f51b5"
     }
     if (percernt >= 50) {
-      color = "green"
+      color = "#018786"
     }
 
     console.log("ssssssssuuuuuummmmmm", sum)

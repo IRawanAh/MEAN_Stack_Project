@@ -2,6 +2,7 @@ var methods = require("../controllers/users.js");
 const mongoose = require('mongoose');
 var User = mongoose.model("User");
 var passport = require('passport');
+var path =require("path");
 
 module.exports = function (app) {
     app.post('/register', methods.addToDB)
@@ -15,6 +16,10 @@ module.exports = function (app) {
     app.get('/getForms/:id', methods.getForms)
     app.post('/submitForm/:id', methods.createSubmit)
     app.get('/deleteForm/:id', methods.deleteform)
+    app.get('/deleteForm/:id', methods.deleteform)
+    app.all("*",(req, res, next)=>{
+        res.sendFile(path.resolve("./public/dist/formbuilder/index.html"))
+    });
 }
 
 function isValidUser(req,res,next){

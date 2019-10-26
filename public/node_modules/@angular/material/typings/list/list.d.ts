@@ -9,13 +9,13 @@ import { AfterContentInit, ElementRef, QueryList, OnChanges, OnDestroy, ChangeDe
 import { CanDisableRipple, CanDisableRippleCtor, MatLine } from '@angular/material/core';
 import { Subject } from 'rxjs';
 /** @docs-private */
-declare class MatListBase {
+export declare class MatListBase {
 }
-declare const _MatListMixinBase: CanDisableRippleCtor & typeof MatListBase;
+export declare const _MatListMixinBase: CanDisableRippleCtor & typeof MatListBase;
 /** @docs-private */
-declare class MatListItemBase {
+export declare class MatListItemBase {
 }
-declare const _MatListItemMixinBase: CanDisableRippleCtor & typeof MatListItemBase;
+export declare const _MatListItemMixinBase: CanDisableRippleCtor & typeof MatListItemBase;
 export declare class MatNavList extends _MatListMixinBase implements CanDisableRipple, OnChanges, OnDestroy {
     /** Emits when the state of the list changes. */
     _stateChanges: Subject<void>;
@@ -23,10 +23,14 @@ export declare class MatNavList extends _MatListMixinBase implements CanDisableR
     ngOnDestroy(): void;
 }
 export declare class MatList extends _MatListMixinBase implements CanDisableRipple, OnChanges, OnDestroy {
-    private _elementRef;
+    private _elementRef?;
     /** Emits when the state of the list changes. */
     _stateChanges: Subject<void>;
-    constructor(_elementRef: ElementRef<HTMLElement>);
+    /**
+     * @deprecated _elementRef parameter to be made required.
+     * @breaking-change 8.0.0
+     */
+    constructor(_elementRef?: ElementRef<HTMLElement> | undefined);
     _getListType(): 'list' | 'action-list' | null;
     ngOnChanges(): void;
     ngOnDestroy(): void;
@@ -58,7 +62,7 @@ export declare class MatListItem extends _MatListItemMixinBase implements AfterC
     _lines: QueryList<MatLine>;
     _avatar: MatListAvatarCssMatStyler;
     _icon: MatListIconCssMatStyler;
-    constructor(_element: ElementRef<HTMLElement>, _changeDetectorRef: ChangeDetectorRef, navList?: MatNavList, list?: MatList);
+    constructor(_element: ElementRef<HTMLElement>, navList?: MatNavList, list?: MatList, _changeDetectorRef?: ChangeDetectorRef);
     ngAfterContentInit(): void;
     ngOnDestroy(): void;
     /** Whether this list item should show a ripple effect when clicked. */
@@ -66,4 +70,3 @@ export declare class MatListItem extends _MatListItemMixinBase implements AfterC
     /** Retrieves the DOM element of the component host. */
     _getHostElement(): HTMLElement;
 }
-export {};

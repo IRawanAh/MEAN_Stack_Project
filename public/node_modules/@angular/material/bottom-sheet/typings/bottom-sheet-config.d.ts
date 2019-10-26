@@ -5,9 +5,8 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
+import { ViewContainerRef, InjectionToken } from '@angular/core';
 import { Direction } from '@angular/cdk/bidi';
-import { ScrollStrategy } from '@angular/cdk/overlay';
-import { InjectionToken, ViewContainerRef } from '@angular/core';
 /** Injection token that can be used to access the data that was passed in to a bottom sheet. */
 export declare const MAT_BOTTOM_SHEET_DATA: InjectionToken<any>;
 /**
@@ -43,6 +42,4 @@ export declare class MatBottomSheetConfig<D = any> {
      * previously-focused element, after it's closed.
      */
     restoreFocus?: boolean;
-    /** Scroll strategy to be used for the bottom sheet. */
-    scrollStrategy?: ScrollStrategy;
 }

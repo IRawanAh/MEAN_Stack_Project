@@ -1,0 +1,38 @@
+.scroll{
+    height:450px;
+    width:300px;
+    border:1px solid #ccc;
+    font:16px/26px Georgia, Garamond, Serif;
+    overflow:auto;
+    margin-left: 40px;
+    background-color: rgb(205, 206, 212);
+    }
+    
+    .btns{
+        margin-left: 30px;
+        margin-top: 7px;
+    }
+    .btns button{
+        margin: 5px;
+    }
+    
+    .green{
+        background-color: #018786;
+        color: white;
+    }
+    
+    .btnback{
+        position: absolute;
+        top: 23%;
+        left: 85%;
+    }
+    
+    .btnback button{
+        height: 35px;
+        width: 150px;
+        font-size: 16px;
+        cursor: pointer;
+        /* border-radius: 10px; */
+        text-align: center;
+        padding: 0;
+    }

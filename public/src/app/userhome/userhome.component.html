@@ -1,5 +1,24 @@
+
+<mat-toolbar class="app-toolbar" color="primary">
+  <span>Forms Builder</span>
+
+  <span class="spacer"></span>
+  <button mat-button [matMenuTriggerFor]="belowMenu">Username<mat-icon class="example-icon" aria-hidden="false"
+          aria-label="Example user person_pin icon">person_pin</mat-icon></button>
+  <mat-menu #belowMenu="matMenu" yPosition="below">
+      <!-- <button mat-menu-item routerLink="/sttings">Account<mat-icon class="example-icon" aria-hidden="false"
+              aria-label="Example user settings_applications icon">settings_applications</mat-icon></button> -->
+      <button mat-menu-item routerLink="/login">Logout<mat-icon class="example-icon" aria-hidden="false"
+              aria-label="Example user exit_to_app icon">exit_to_app</mat-icon></button>
+  </mat-menu>
+</mat-toolbar>
+<mat-toolbar>
+  <a href=""[routerLink]="['/home']"><h5><mat-icon class="example-icon" aria-hidden="false"
+    aria-label="Example user home icon">home</mat-icon>Dashboard</h5></a>
+</mat-toolbar>
 <div class="left">
-  <a mat-raised-button [routerLink]="['/user']"><button mat-raised-button color="accent">Create Form</button></a>
+  <a mat-raised-button class="formbtn" color="accent" style="color: white;" [routerLink]="['/user']"> <mat-icon class="example-icon" aria-hidden="false"
+    aria-label="Example user note_add icon">note_add</mat-icon>Create Form</a>
 </div>
 <div class="card-container">
     <div *ngFor="let form of forms" >
@@ -9,33 +28,24 @@
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>{{form.name}}</mat-card-title>
     </mat-card-header>
-    <img mat-card-image src="../../assets/img/formhead.jpg" alt="Photo of a Shiba Inu">
+    <img mat-card-image src="../../assets/img/formhead.jpg" alt="form">
     <mat-card-content>
       <p>
         {{form.description}}
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button class="green"  [routerLink]="['/view',form._id]">View Form</button> <span class="spacer"></span>
-      <button mat-raised-button color="accent" [routerLink]="['/viewall',form._id]" >Responses</button>
-      <button mat-raised-button color="warn"  (click)="delete(form._id)">Delete</button>
-
-
+        <button mat-mini-fab class="view" [routerLink]="['/viewall',form._id]" aria-label="Example icon-button with a insert_chart icon">
+          <mat-icon>insert_chart  </mat-icon></button>
+        <button mat-mini-fab color="primary"  [routerLink]="['/view',form._id]" aria-label="Example icon-button with a visibility icon">
+          <mat-icon>visibility</mat-icon></button>
+        <button mat-mini-fab color="warn"  (click)="delete(form._id)" aria-label="Example icon-button with a delete icon">
+          <mat-icon>delete</mat-icon></button>
+      <!-- <button mat-raised-button class="view" [routerLink]="['/viewall',form._id]"  >Responses</button> -->
+      <!-- <button mat-raised-button color="primary"  [routerLink]="['/view',form._id]">View</button> <span class="spacer"></span>
+      <button mat-raised-button color="warn"  (click)="delete(form._id)">Delete</button> -->
     </mat-card-actions>
-  </mat-card>
+   </mat-card>
 </div>
 
 </div>
-<!-- Footer -->
-<!-- <footer>
-    Love Angular?&nbsp;
-    <a href="https://github.com/angular/angular" target="_blank" rel="noopener"> Give our repo a star.
-      <div class="github-star-badge">
-          <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-        Star
-      </div>
-    </a>
-    <a href="https://github.com/angular/angular" target="_blank" rel="noopener">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="#1976d2"/><path d="M0 0h24v24H0z" fill="none"/></svg>
-    </a>
-</footer> -->

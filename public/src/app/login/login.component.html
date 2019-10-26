@@ -1,31 +1,28 @@
-
-  <div class="row" style="margin-top:40px; padding:20px; background-color:#eff0f2;border-radius:15px;
--webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
--moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);">
-    <div class="col-sm-12" style="text-align:center;">
-      Login
-    </div>
-
-    <div class="col-sm-12">
-      <form [formGroup]="loginForm">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1"
-            aria-describedby="emailHelp" placeholder="Enter email">
+<mat-card class="row2">
+  <img src="../../assets/img/user3.png" class="icon" alt="">
+  <h2>Log In</h2>
+  <hr>
+    <form [formGroup]="loginForm">
+        <mat-form-field>
+          <input  matInput placeholder="Enter your email" formControlName="email" type="email"  id="exampleInputEmail1"
+            aria-describedby="emailHelp" required>
           <small id="emailHelp" class="form-text text-muted"></small>
-        </div>
-        <div class="form-group">
-          <label for="passwordInput">Password</label>
-          <input formControlName="password" type="password" class="form-control" id="passwordInput"
-            aria-describedby="passHelp" placeholder="password">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'"
+            formControlName="password" type="password"  id="passwordInput"
+            aria-describedby="passHelp" required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
           <small id="passHelp" class="form-text text-muted"></small>
+        </mat-form-field>
+        <br>
+        <div class="action">
+        <button class="loginbtn" mat-raised-button color="accent" (click)="login()">Log in</button> 
         </div>
-
-        <div class="form-group" style="text-align:center;">
-          <button type="button" class="btn btn-dark" (click)="login()">Log in</button>
-          <button type="button" class="btn btn-secondary" (click)="moveToRegister()">Register</button>
-        </div>
-      </form>
-    </div>
-  </div>
+        <p class="reg">New user? <a style="color: rgb(64, 64, 211);" (click)="moveToRegister()" >Create an Account</a></p> 
+    </form>
+</mat-card>

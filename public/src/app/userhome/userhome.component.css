@@ -1,6 +1,17 @@
 html, body { height: 100%; }
+
 .spacer{
   flex: 1 1 auto;
+}
+
+.formbtn{
+  height: 35px;
+  width: 150px;
+  font-size: 16px;
+  cursor: pointer;
+  /* border-radius: 10px; */
+  text-align: center;
+  padding: 0;
 }
 .app-toolbar {
   position: sticky;
@@ -26,9 +37,6 @@ html, body { height: 100%; }
   }
   p {
     margin: 0;
-  }
-  .spacer {
-    flex: 1;
   }
   .toolbar {
     height: 60px;
@@ -57,16 +65,16 @@ html, body { height: 100%; }
     flex-direction: column;
     /* align-items: center; */
   }
-  .left{
-    /* display: flex; */
-    justify-content: right;
+.left{
+  /* padding-top: 10px; */
+  position: absolute;
+  top: 23%;
+  left: 85%;
+   
   }
-  .green{
-    background-color: #556091;
+  .view{
+    background-color: #018786;
     color: white;
-    padding: 0px;
-    width: 300px;
-    font-size: 13px;
   }
   .mat-card {
     max-width: 250px;
@@ -79,6 +87,9 @@ html, body { height: 100%; }
   }
   .mat-card-actions{
     display: flex;
+  }
+  .mat-card-actions button{
+    margin: 3px;
   }
   .mat-card-actions .flex-spacer{
     width: 100%;

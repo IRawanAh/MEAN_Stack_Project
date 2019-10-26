@@ -26,9 +26,9 @@ export declare class PageEvent {
     length: number;
 }
 /** @docs-private */
-declare class MatPaginatorBase {
+export declare class MatPaginatorBase {
 }
-declare const _MatPaginatorBase: CanDisableCtor & HasInitializedCtor & typeof MatPaginatorBase;
+export declare const _MatPaginatorBase: CanDisableCtor & HasInitializedCtor & typeof MatPaginatorBase;
 /**
  * Component to provide navigation between paged information. Displays the size of the current
  * page, user-selectable options to change that size, what items are being shown, and
@@ -101,4 +101,3 @@ export declare class MatPaginator extends _MatPaginatorBase implements OnInit, O
     /** Emits an event notifying that a change of the paginator's properties has been triggered. */
     private _emitPageEvent;
 }
-export {};

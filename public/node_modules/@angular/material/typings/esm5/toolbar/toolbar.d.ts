@@ -9,11 +9,11 @@ import { Platform } from '@angular/cdk/platform';
 import { AfterViewInit, ElementRef, QueryList } from '@angular/core';
 import { CanColor, CanColorCtor } from '@angular/material/core';
 /** @docs-private */
-declare class MatToolbarBase {
+export declare class MatToolbarBase {
     _elementRef: ElementRef;
     constructor(_elementRef: ElementRef);
 }
-declare const _MatToolbarMixinBase: CanColorCtor & typeof MatToolbarBase;
+export declare const _MatToolbarMixinBase: CanColorCtor & typeof MatToolbarBase;
 export declare class MatToolbarRow {
 }
 export declare class MatToolbar extends _MatToolbarMixinBase implements CanColor, AfterViewInit {
@@ -33,4 +33,3 @@ export declare class MatToolbar extends _MatToolbarMixinBase implements CanColor
  * @docs-private
  */
 export declare function throwToolbarMixedModesError(): void;
-export {};

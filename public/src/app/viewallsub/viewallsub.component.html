@@ -1,3 +1,23 @@
+<mat-toolbar class="app-toolbar" color="primary">
+  <span>Forms Builder</span>
+
+  <span class="spacer"></span>
+  <button mat-button [matMenuTriggerFor]="belowMenu">Username<mat-icon class="example-icon" aria-hidden="false"
+          aria-label="Example user person_pin icon">person_pin</mat-icon></button>
+  <mat-menu #belowMenu="matMenu" yPosition="below">
+      <!-- <button mat-menu-item routerLink="/sttings">Account<mat-icon class="example-icon" aria-hidden="false"
+              aria-label="Example user settings_applications icon">settings_applications</mat-icon></button> -->
+      <button mat-menu-item routerLink="/login">Logout<mat-icon class="example-icon" aria-hidden="false"
+              aria-label="Example user exit_to_app icon">exit_to_app</mat-icon></button>
+  </mat-menu>
+</mat-toolbar>
+<mat-toolbar>
+    <a href=""[routerLink]="['/home']"><h6>
+      <mat-icon class="example-icon" aria-hidden="false"aria-label="Example user home icon">home</mat-icon>
+          Dashboard</h6></a>
+  </mat-toolbar>
+
+
 <div class="text-center">
   <h2> You have  {{count}} Submissions</h2>
 </div>
